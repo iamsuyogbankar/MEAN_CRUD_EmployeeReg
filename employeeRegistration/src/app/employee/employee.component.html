@@ -1,0 +1,69 @@
+<div class="container" >
+  <div class="row mt-5" >
+    <div class="col-md-6" >
+      <form [formGroup]="employeeForm" (ngSubmit)="onSubmitEmployee(employeeForm.value)" method="POST">
+        <div class="form-group">
+          <label >Employee Name</label>
+          <input type="text" class="form-control" 
+          name="name" formControlName="name" id="name"  required>
+        </div>
+        <div class="form-group">
+          <label>Employee Email_Id</label>
+          <input type="email" class="form-control" 
+          name="email" formControlName="email" id="email" required>
+        </div>
+        <div class="form-group">
+          <label>Employee Number</label>
+          <input type="number" class="form-control"
+          name="number" formControlName="number"  id="number" required>
+        </div>
+        <div class="form-group">
+          <label>Employee Designation</label>
+          <input type="text" class="form-control"
+          name="designation" formControlName="designation" id="designation" required>
+        </div>
+        <div class="form-group">
+          <label>Employee Salary</label>
+          <input type="number" class="form-control"
+          name="salary" formControlName="salary" id="salary" required>
+        </div>
+
+        <div align="center">
+          <button type="submit" class="btn btn-outline-success btn-md">Submit</button>
+          <!-- <button type="submit" class="btn btn-outline-success btn-md">Submit</button> -->
+        </div>
+      </form>
+    </div>
+    <div class="table-responsive col-md-6">
+      <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">Sr.no</th>
+            <th scope="col">Name</th>
+            <th scope="col">EmailId</th>
+            <th scope="col">Number</th>
+            <th scope="col">Designation</th>
+            <th scope="col">Salary</th>
+            <th scope="col">action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let data of employeeData; let i=index">
+            <th scope="row">{{ i+1 }}</th>
+            <td>{{ data.name | uppercase}}</td>
+            <td>{{ data.email }}</td>
+            <td>{{ data.number }}</td>
+            <td>{{ data.designation }}</td>
+            <td>{{ data.salary }}</td>
+            <td>
+                <a routerLink="/employee/{{ data._id }}">
+                 <i class="fa fa-edit" style="font-size:30px;color:blue"></i></a>
+                <a (click)="onDeleteEmployee(data._id)"><i class="fa fa-trash-o" 
+                style="font-size:30px;color:red"></i></a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
